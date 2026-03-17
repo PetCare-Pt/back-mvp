@@ -18,6 +18,12 @@ if __name__ == "__main__":
     # Crear la colección 'professional_profiles' si no existe
     db.create_collection('professional_profiles')
 
+    # Crear la colección 'pets' si no existe
+    db.create_collection('pets')
+
+    # Obtener la fecha actual
+    now = datetime.now()
+
     # Datos de los perfiles profesionales
     profiles = [
         {
@@ -51,8 +57,8 @@ if __name__ == "__main__":
                     "address_detail": "Carrera 10 #23-45, Barrio La Esperanza"
                 }
             ],
-            "created_at": datetime(2026, 3, 16),
-            "updated_at": datetime(2026, 3, 16),
+            "created_at": now,
+            "updated_at": now,
             "is_active": True
         },
         {
@@ -82,8 +88,8 @@ if __name__ == "__main__":
                     "address_detail": "Calle 22 #12-34, Barrio Los Andes"
                 }
             ],
-            "created_at": datetime(2026, 3, 16),
-            "updated_at": datetime(2026, 3, 16),
+            "created_at": now,
+            "updated_at": now,
             "is_active": True
         },
         {
@@ -108,8 +114,8 @@ if __name__ == "__main__":
                     "address_detail": "Avenida 5 #20-11, Barrio San Martin"
                 }
             ],
-            "created_at": datetime(2026, 3, 16),
-            "updated_at": datetime(2026, 3, 16),
+            "created_at": now,
+            "updated_at": now,
             "is_active": True
         },
         {
@@ -139,13 +145,105 @@ if __name__ == "__main__":
                     "address_detail": "Calle 15 #8-33, Barrio El Bosque"
                 }
             ],
-            "created_at": datetime(2026, 3, 16),
-            "updated_at": datetime(2026, 3, 16),
+            "created_at": now,
+            "updated_at": now,
             "is_active": True
+        }
+    ]
+
+    # Datos de mascotas
+    pets = [
+        # Owner 1
+        {
+            "owner_id": "YqvvF1NMsPTtota8MnfBi2IZp7i1",
+            "name": "Luna",
+            "image_url": "https://example.com/images/luna.jpg",
+            "species": "Perro",
+            "breed": "Labrador Retriever",
+            "birth_date": datetime(2020, 5, 10),
+            "weight": 25.5,
+            "physical_description": "Pelaje amarillo, tamaño mediano, ojos marrones",
+            "special_notes": "Muy amigable, requiere paseos diarios",
+            "created_at": now,
+            "updatedAt": now,
+            "isActive": True
+        },
+        {
+            "owner_id": "YqvvF1NMsPTtota8MnfBi2IZp7i1",
+            "name": "Michi",
+            "image_url": "https://example.com/images/michi.jpg",
+            "species": "Gato",
+            "breed": "Siames",
+            "birth_date": datetime(2021, 8, 15),
+            "weight": 4.2,
+            "physical_description": "Pelaje corto, blanco con manchas marrones",
+            "special_notes": "Le gusta estar en lugares altos",
+            "created_at": now,
+            "updatedAt": now,
+            "isActive": True
+        },
+        {
+            "owner_id": "YqvvF1NMsPTtota8MnfBi2IZp7i1",
+            "name": "Rocky",
+            "species": "Perro",
+            "breed": "Bulldog",
+            "birth_date": datetime(2019, 3, 20),
+            "weight": 18.0,
+            "physical_description": "Robusto, cara arrugada",
+            "special_notes": "Problemas respiratorios leves",
+            "created_at": now,
+            "updatedAt": now,
+            "isActive": True
+        },
+
+        # Owner 2
+        {
+            "owner_id": "K75xexYeILhw16yrXiqgaXQ8rKF2",
+            "name": "Max",
+            "image_url": "https://example.com/images/max.jpg",
+            "species": "Perro",
+            "breed": "Pastor Alemán",
+            "birth_date": datetime(2018, 11, 2),
+            "weight": 30.0,
+            "physical_description": "Grande, pelaje negro y marrón",
+            "special_notes": "Entrenado para obediencia",
+            "created_at": now,
+            "updatedAt": now,
+            "isActive": True
+        },
+        {
+            "owner_id": "K75xexYeILhw16yrXiqgaXQ8rKF2",
+            "name": "Nina",
+            "species": "Gato",
+            "breed": "Persa",
+            "birth_date": datetime(2022, 1, 12),
+            "weight": 3.8,
+            "physical_description": "Pelaje largo y blanco",
+            "special_notes": "Requiere cepillado diario",
+            "created_at": now,
+            "updatedAt": now,
+            "isActive": True
+        },
+        {
+            "owner_id": "K75xexYeILhw16yrXiqgaXQ8rKF2",
+            "name": "Coco",
+            "image_url": "https://example.com/images/coco.jpg",
+            "species": "Ave",
+            "breed": "Loro",
+            "birth_date": datetime(2020, 7, 7),
+            "weight": 1.1,
+            "physical_description": "Plumas verdes con amarillo",
+            "special_notes": "Puede imitar sonidos",
+            "created_at": now,
+            "updatedAt": now,
+            "isActive": True
         }
     ]
 
     # Insertar los perfiles en la colección 'professional_profiles'
     db.professional_profiles.insert_many(profiles)
+
+    # Insertar las mascotas en la colección 'pets'
+    db.pets.insert_many(pets)
 
     print("Datos insertados correctamente en la base de datos.")    
