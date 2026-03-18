@@ -1,0 +1,11 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from routers.pro_profiles import pp_router
+
+app = FastAPI(title="Pet Care API", version="1.0.0", description="Pet Care API")
+
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True,
+    allow_methods=["*"], allow_headers=["*"],
+)
+
+app.include_router(pp_router, prefix="/api/v1")
