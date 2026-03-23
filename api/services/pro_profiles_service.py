@@ -24,10 +24,9 @@ def update_profile(pro_profile: ProProfile, db: Collection) -> dict[str | None, 
     if db.count_documents({"provider_id": pro_profile.provider_id, 
                            "_id": ObjectId(pro_profile.id)}) == 0:
         return None, "No tienes un perfil profesional creado"
+    p_id, prov_id = pro_profile.id, pro_profile.provider_id
     pro_profile.updated_at = now
     data_dict = model_to_db(pro_profile)
-    p_id, prov_id = pro_profile.id, pro_profile.provider_id
-    del data_dict["id"]
     del data_dict["provider_id"]
     del data_dict["created_at"]
     del data_dict["is_active"]
@@ -41,4 +40,4 @@ def verify_pro_profile_experience(pro_profile: ProProfile, now: datetime) -> dic
         if pro_profile.experience.end_date \
             and pro_profile.experience.end_date < pro_profile.experience.start_date:
             return False, "La fecha de finalización de la experiencia no puede ser anterior a la fecha de inicio"
-    True, None
+    return True, None

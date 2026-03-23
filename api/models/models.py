@@ -43,8 +43,9 @@ class ProProfile(BaseModel):
     updated_at: datetime | None = None
     is_active: bool = True
 
-class Response(BaseModel):
+class CreationResponse(BaseModel):
     message: str
+    data_id: str
 
 def model_to_db(model: BaseModel) -> dict:
     data = model.model_dump(exclude_none=True, mode="json")
