@@ -1,5 +1,6 @@
 from pymongo.database import Collection
-from models.models import ProProfile, model_to_db
+from models.pro_profiles_models import ProProfile
+from models.mappers import model_to_db
 from datetime import datetime
 from bson.objectid import ObjectId
 
@@ -35,7 +36,7 @@ def update_profile(pro_profile: ProProfile, db: Collection) -> dict[str | None, 
 
 def verify_pro_profile_experience(pro_profile: ProProfile, now: datetime) -> dict[bool, str | None]:
     if pro_profile.experience:
-        if pro_profile.experience.start_date > now:
+        if pro_profile.experience.start_date > now.date():
             return False, "La fecha de inicio de la experiencia no puede ser posterior a la fecha actual"
         if pro_profile.experience.end_date \
             and pro_profile.experience.end_date < pro_profile.experience.start_date:

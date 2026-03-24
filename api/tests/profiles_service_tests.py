@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 from datetime import datetime, timedelta
 from pymongo.database import Collection
 from bson.objectid import ObjectId
-from models.models import ProProfile, Experience, Image, Certification, Address
+from models.pro_profiles_models import ProProfile, Experience, Image, Certification, Address
 from services.pro_profiles_service import create_profile, update_profile, verify_pro_profile_experience
 
 
