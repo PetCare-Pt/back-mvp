@@ -4,6 +4,7 @@ load_dotenv()
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers.pro_profiles import pp_router
+from routers.pets_profiles import pep_router
 import firebase_admin
 from firebase_admin import credentials
 import os
@@ -20,3 +21,4 @@ app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True,
 )
 
 app.include_router(pp_router, prefix="/api/v1")
+app.include_router(pep_router, prefix="/api/v1")

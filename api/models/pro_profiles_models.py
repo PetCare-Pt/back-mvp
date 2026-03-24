@@ -1,12 +1,7 @@
-from pydantic import BaseModel, ConfigDict, HttpUrl, Field
+from pydantic import BaseModel, HttpUrl, Field
+from models.models_configs import base_model_config
 from typing import List, Optional
-from datetime import datetime
-
-base_model_config = ConfigDict(
-    populate_by_name=True,
-    arbitrary_types_allowed=True,
-    from_attributes=True,
-)
+from datetime import datetime, date
 
 class Image(BaseModel):
     model_config = base_model_config
@@ -15,8 +10,8 @@ class Image(BaseModel):
 
 class Experience(BaseModel):
     model_config = base_model_config
-    start_date: datetime
-    end_date: Optional[datetime] = None
+    start_date: date
+    end_date: Optional[date] = None
 
 class Certification(BaseModel):
     model_config = base_model_config
@@ -42,19 +37,3 @@ class ProProfile(BaseModel):
     created_at: datetime | None = None
     updated_at: datetime | None = None
     is_active: bool = True
-
-class CreationResponse(BaseModel):
-    message: str
-    data_id: str
-
-def model_to_db(model: BaseModel) -> dict:
-    data = model.model_dump(exclude_none=True, mode="json")
-    if "id" in data:
-        del data["id"]
-    return data
-
-def model_from_db(model_class: type[BaseModel], data: dict) -> BaseModel:
-    if "_id" in data:
-        data["id"] = str(data["_id"])
-        del data["_id"]
-    return model_class(**data)
